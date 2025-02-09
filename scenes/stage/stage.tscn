@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://df3rikr3va82q"]
+
+[ext_resource type="Texture2D" uid="uid://b2ijhmj67ylrh" path="res://assets/art/backgrounds/street-background.png" id="1_k4v4l"]
+
+[node name="Stage" type="Node2D"]
+
+[node name="Backgrounds" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Backgrounds"]
+texture = ExtResource("1_k4v4l")
+centered = false
