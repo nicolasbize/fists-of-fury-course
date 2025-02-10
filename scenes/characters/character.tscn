@@ -33,6 +33,13 @@ offset = Vector2(-7, 0)
 target_position = Vector2(100, 0)
 collision_mask = 0
 
+[node name="CollectibleSensor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectibleSensor"]
+
 [editable path="DamageEmitter"]
 [editable path="DamageReceiver"]
 [editable path="CollateralDamageEmitter"]

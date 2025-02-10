@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://uqrqng3qanfq"]
+[gd_scene load_steps=9 format=3 uid="uid://uqrqng3qanfq"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_58n65"]
 [ext_resource type="PackedScene" uid="uid://df3rikr3va82q" path="res://scenes/stage/stage.tscn" id="1_ea3cy"]
 [ext_resource type="PackedScene" uid="uid://cvr6opvp31hp6" path="res://scenes/characters/player.tscn" id="2_fso2d"]
 [ext_resource type="PackedScene" uid="uid://qilhs2wt8rl8" path="res://scenes/props/barrel.tscn" id="4_cs001"]
 [ext_resource type="PackedScene" uid="uid://ba7x8fhqs3fta" path="res://scenes/characters/basic_enemy.tscn" id="5_15mmh"]
+[ext_resource type="PackedScene" uid="uid://clqck6kawlwhi" path="res://scenes/props/knife.tscn" id="6_4co1t"]
+[ext_resource type="PackedScene" uid="uid://cnwqi0bw23cl3" path="res://scenes/characters/goon_enemy.tscn" id="7_xjatk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktcqf"]
 size = Vector2(6, 64)
@@ -52,5 +54,11 @@ position = Vector2(61, 47)
 [node name="BasicEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_15mmh")]
 position = Vector2(67, 58)
 player = NodePath("../Player")
-can_respawn_knives = true
 duration_between_knife_respawn = 2000
+
+[node name="Knife" parent="ActorsContainer" instance=ExtResource("6_4co1t")]
+position = Vector2(21, 52)
+
+[node name="GoonEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_xjatk")]
+position = Vector2(83, 51)
+player = NodePath("../Player")
