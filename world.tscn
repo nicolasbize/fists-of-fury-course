@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://uqrqng3qanfq"]
+[gd_scene load_steps=6 format=3 uid="uid://uqrqng3qanfq"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_58n65"]
 [ext_resource type="PackedScene" uid="uid://df3rikr3va82q" path="res://scenes/stage/stage.tscn" id="1_ea3cy"]
 [ext_resource type="PackedScene" uid="uid://cvr6opvp31hp6" path="res://scenes/characters/player.tscn" id="2_fso2d"]
+[ext_resource type="PackedScene" uid="uid://qilhs2wt8rl8" path="res://scenes/props/barrel.tscn" id="4_cs001"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktcqf"]
 size = Vector2(6, 64)
@@ -11,11 +12,6 @@ size = Vector2(6, 64)
 script = ExtResource("1_58n65")
 
 [node name="Stage" parent="." instance=ExtResource("1_ea3cy")]
-
-[node name="Player" parent="." instance=ExtResource("2_fso2d")]
-position = Vector2(46, 40)
-collision_layer = 1
-collision_mask = 1
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(50, 32)
@@ -35,3 +31,12 @@ position = Vector2(100, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/InvisibleWalls/RightWall"]
 position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_ktcqf")
+
+[node name="ActorsContainer" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="ActorsContainer" instance=ExtResource("2_fso2d")]
+position = Vector2(36, 46)
+
+[node name="Barrel" parent="ActorsContainer" instance=ExtResource("4_cs001")]
+position = Vector2(61, 47)
