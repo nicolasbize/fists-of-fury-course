@@ -50,6 +50,7 @@ jump={
 2d_physics/layer_5="PlayerDamageReceiver"
 2d_physics/layer_6="EnemyDamageReceiver"
 2d_physics/layer_7="DestructiblesDamageReceiver"
+2d_physics/layer_8="InvisibleWalls"
 
 [rendering]
 

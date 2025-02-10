@@ -25,5 +25,8 @@ offset = Vector2(-7, 0)
 
 [node name="DamageReceiver" parent="." instance=ExtResource("4_8fmer")]
 
+[node name="CollateralDamageEmitter" parent="." instance=ExtResource("3_3jpht")]
+
 [editable path="DamageEmitter"]
 [editable path="DamageReceiver"]
+[editable path="CollateralDamageEmitter"]
