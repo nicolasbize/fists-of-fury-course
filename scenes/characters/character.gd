@@ -26,6 +26,7 @@ const GRAVITY := 600.0
 @onready var damage_receiver : DamageReceiver = $DamageReceiver
 @onready var knife_sprite : Sprite2D = $KnifeSprite
 @onready var projectile_aim : RayCast2D = $ProjectileAim
+@onready var weapon_position : Node2D = $KnifeSprite/WeaponPosition
 
 enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK, THROW, PICKUP}
 
@@ -79,6 +80,8 @@ func _process(delta: float) -> void:
 	character_sprite.position = Vector2.UP * height
 	knife_sprite.position = Vector2.UP * height
 	collision_shape.disabled = is_collision_disabled()
+	damage_emitter.monitoring = is_attacking()
+	damage_receiver.monitorable = can_get_hurt()
 	move_and_slide()
 
 func handle_movement() -> void:
@@ -137,12 +140,12 @@ func set_heading() -> void:
 func flip_sprites() -> void:
 	if heading == Vector2.RIGHT:
 		character_sprite.flip_h = false
-		knife_sprite.flip_h = false
+		knife_sprite.scale.x = 1
 		damage_emitter.scale.x = 1
 		projectile_aim.scale.x = 1
 	else:
 		character_sprite.flip_h = true
-		knife_sprite.flip_h = true
+		knife_sprite.scale.x = -1
 		damage_emitter.scale.x = -1
 		projectile_aim.scale.x = -1
 
@@ -159,7 +162,10 @@ func can_jumpkick() -> bool:
 	return state == State.JUMP
 	
 func can_get_hurt() -> bool:
-	return [State.IDLE, State.WALK, State.TAKEOFF, State.LAND].has(state)
+	return [State.IDLE, State.WALK, State.TAKEOFF, State.LAND, State.PREP_ATTACK].has(state)
+
+func is_attacking() -> bool:
+	return [State.ATTACK, State.JUMPKICK].has(state)
  
 func can_pickup_collectible() -> bool:
 	var collectible_areas := collectible_sensor.get_overlapping_areas()
@@ -187,6 +193,9 @@ func on_action_complete() -> void:
 func on_throw_complete() -> void:
 	state = State.IDLE
 	has_knife = false
+	var knife_global_position := Vector2(weapon_position.global_position.x, global_position.y)
+	var knife_height := -weapon_position.position.y
+	EntityManager.spawn_collectible.emit(Collectible.Type.KNIFE, Collectible.State.FLY, knife_global_position, heading, knife_height)
 
 func on_takeoff_complete() -> void:
 	state = State.JUMP

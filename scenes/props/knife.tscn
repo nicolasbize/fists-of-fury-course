@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://clqck6kawlwhi"]
+[gd_scene load_steps=10 format=3 uid="uid://clqck6kawlwhi"]
 
 [ext_resource type="PackedScene" uid="uid://b8dwnj8immud3" path="res://scenes/props/collectible.tscn" id="1_h55mh"]
 [ext_resource type="Texture2D" uid="uid://dir1452cjvhn7" path="res://assets/art/props/knife.png" id="2_wnhbd"]
@@ -154,7 +154,11 @@ _data = {
 "grounded": SubResource("Animation_sgs5q")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03gtp"]
+size = Vector2(3, 3)
+
 [node name="Knife" instance=ExtResource("1_h55mh")]
+damage = 4
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, -2)
@@ -171,3 +175,11 @@ libraries = {
 "": SubResource("AnimationLibrary_45s6f")
 }
 autoplay = "fall"
+
+[node name="DamageEmitter" parent="." index="4"]
+collision_mask = 176
+
+[node name="CollisionShape2D" parent="DamageEmitter" index="0"]
+shape = SubResource("RectangleShape2D_03gtp")
+
+[editable path="DamageEmitter"]

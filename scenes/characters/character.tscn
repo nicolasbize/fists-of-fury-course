@@ -29,6 +29,8 @@ offset = Vector2(-7, 0)
 
 [node name="KnifeSprite" type="Sprite2D" parent="."]
 
+[node name="WeaponPosition" type="Node2D" parent="KnifeSprite"]
+
 [node name="ProjectileAim" type="RayCast2D" parent="."]
 target_position = Vector2(100, 0)
 collision_mask = 0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://uqrqng3qanfq"]
+[gd_scene load_steps=10 format=3 uid="uid://uqrqng3qanfq"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_58n65"]
 [ext_resource type="PackedScene" uid="uid://df3rikr3va82q" path="res://scenes/stage/stage.tscn" id="1_ea3cy"]
 [ext_resource type="PackedScene" uid="uid://cvr6opvp31hp6" path="res://scenes/characters/player.tscn" id="2_fso2d"]
+[ext_resource type="Script" path="res://scenes/stage/actors_container.gd" id="3_1ub62"]
 [ext_resource type="PackedScene" uid="uid://qilhs2wt8rl8" path="res://scenes/props/barrel.tscn" id="4_cs001"]
 [ext_resource type="PackedScene" uid="uid://ba7x8fhqs3fta" path="res://scenes/characters/basic_enemy.tscn" id="5_15mmh"]
 [ext_resource type="PackedScene" uid="uid://clqck6kawlwhi" path="res://scenes/props/knife.tscn" id="6_4co1t"]
@@ -43,6 +44,7 @@ shape = SubResource("RectangleShape2D_ktcqf")
 
 [node name="ActorsContainer" type="Node2D" parent="."]
 y_sort_enabled = true
+script = ExtResource("3_1ub62")
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("2_fso2d")]
 position = Vector2(36, 46)
