@@ -1,0 +1,148 @@
+[gd_scene load_steps=12 format=3 uid="uid://ba7x8fhqs3fta"]
+
+[ext_resource type="PackedScene" uid="uid://h4wo2mqnh48o" path="res://scenes/characters/character.tscn" id="1_el813"]
+[ext_resource type="Script" path="res://scenes/characters/basic_enemy.gd" id="2_p6rsp"]
+[ext_resource type="Texture2D" uid="uid://dcldheiy6r7j2" path="res://assets/art/characters/enemy_punk.png" id="2_pr031"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3t3pb"]
+radius = 2.0
+height = 12.0
+
+[sub_resource type="Animation" id="Animation_jwwul"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_l3muu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_l2p7r"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_dogvt"]
+resource_name = "hurt"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [40, 41, 42]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_action_complete"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nahco"]
+_data = {
+"RESET": SubResource("Animation_l3muu"),
+"hurt": SubResource("Animation_dogvt"),
+"idle": SubResource("Animation_jwwul"),
+"walk": SubResource("Animation_l2p7r")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63tsg"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jb8ra"]
+size = Vector2(10, 10)
+
+[node name="BasicEnemy" instance=ExtResource("1_el813")]
+collision_layer = 4
+collision_mask = 12
+script = ExtResource("2_p6rsp")
+damage = 2
+knockback_intensity = 40.0
+max_health = 20
+speed = 25.0
+
+[node name="CharacterSprite" parent="." index="1"]
+texture = ExtResource("2_pr031")
+centered = false
+offset = Vector2(-24, -48)
+hframes = 10
+vframes = 10
+
+[node name="CollisionShape2D" parent="." index="2"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3t3pb")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_nahco")
+}
+autoplay = "idle"
+
+[node name="DamageEmitter" parent="." index="4"]
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="DamageEmitter" index="0"]
+position = Vector2(8, -11)
+shape = SubResource("RectangleShape2D_63tsg")
+
+[node name="DamageReceiver" parent="." index="5"]
+collision_layer = 32
+
+[node name="CollisionShape2D" parent="DamageReceiver" index="0"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_jb8ra")
+
+[editable path="DamageEmitter"]
+[editable path="DamageReceiver"]
