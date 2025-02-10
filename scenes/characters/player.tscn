@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvr6opvp31hp6"]
+[gd_scene load_steps=17 format=3 uid="uid://cvr6opvp31hp6"]
 
 [ext_resource type="PackedScene" uid="uid://h4wo2mqnh48o" path="res://scenes/characters/character.tscn" id="1_1in0h"]
 [ext_resource type="Script" path="res://scenes/characters/player.gd" id="2_1d5f1"]
 [ext_resource type="Texture2D" uid="uid://cxg8d6qg72u72" path="res://assets/art/characters/player.png" id="2_fyfnq"]
+[ext_resource type="PackedScene" uid="uid://c6incy0vxd2f1" path="res://scenes/characters/enemy_slot.tscn" id="4_cma4q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kwi03"]
 radius = 2.0
@@ -294,6 +295,20 @@ collision_layer = 16
 [node name="CollisionShape2D" parent="DamageReceiver" index="0"]
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_5xonq")
+
+[node name="EnemySlots" type="Node2D" parent="." index="6"]
+
+[node name="EnemySlot" parent="EnemySlots" index="0" instance=ExtResource("4_cma4q")]
+position = Vector2(17, 2)
+
+[node name="EnemySlot2" parent="EnemySlots" index="1" instance=ExtResource("4_cma4q")]
+position = Vector2(17, -3)
+
+[node name="EnemySlot3" parent="EnemySlots" index="2" instance=ExtResource("4_cma4q")]
+position = Vector2(-17, 2)
+
+[node name="EnemySlot4" parent="EnemySlots" index="3" instance=ExtResource("4_cma4q")]
+position = Vector2(-17, -3)
 
 [editable path="DamageEmitter"]
 [editable path="DamageReceiver"]
