@@ -911,18 +911,18 @@ collision_layer = 2
 collision_mask = 137
 script = ExtResource("2_1d5f1")
 max_duration_between_successful_hits = 2000
-autodestroy_on_drop = true
 can_respawn = true
 damage = 4
-damage_gunshot = 8
-damage_power = 6
+max_health = 30
 duration_grounded = 1000.0
 jump_intensity = 150.0
 knockback_intensity = 10.0
 knockdown_intensity = 70.0
-max_ammo_per_gun = 3
-max_health = 30
 speed = 35.0
+autodestroy_on_drop = true
+damage_gunshot = 8
+damage_power = 6
+max_ammo_per_gun = 3
 
 [node name="CharacterSprite" parent="." index="1"]
 texture = ExtResource("2_fyfnq")

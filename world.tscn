@@ -1,13 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://uqrqng3qanfq"]
+[gd_scene load_steps=7 format=3 uid="uid://uqrqng3qanfq"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_58n65"]
 [ext_resource type="PackedScene" uid="uid://df3rikr3va82q" path="res://scenes/stage/stage.tscn" id="1_ea3cy"]
 [ext_resource type="PackedScene" uid="uid://cvr6opvp31hp6" path="res://scenes/characters/player.tscn" id="2_fso2d"]
 [ext_resource type="Script" path="res://scenes/stage/actors_container.gd" id="3_1ub62"]
-[ext_resource type="PackedScene" uid="uid://qilhs2wt8rl8" path="res://scenes/props/barrel.tscn" id="4_cs001"]
-[ext_resource type="PackedScene" uid="uid://ba7x8fhqs3fta" path="res://scenes/characters/basic_enemy.tscn" id="5_15mmh"]
-[ext_resource type="PackedScene" uid="uid://cnwqi0bw23cl3" path="res://scenes/characters/goon_enemy.tscn" id="7_xjatk"]
-[ext_resource type="PackedScene" uid="uid://77l4jx081mf4" path="res://scenes/characters/thug_enemy.tscn" id="8_b0oub"]
+[ext_resource type="PackedScene" uid="uid://dv0080mtbogqj" path="res://scenes/characters/igor_boss.tscn" id="5_vyiad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktcqf"]
 size = Vector2(6, 64)
@@ -48,23 +45,7 @@ script = ExtResource("3_1ub62")
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("2_fso2d")]
 position = Vector2(36, 46)
-speed = 0.0
 
-[node name="Barrel" parent="ActorsContainer" instance=ExtResource("4_cs001")]
+[node name="IgorBoss" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_vyiad")]
 position = Vector2(74, 47)
-content_type = 2
-
-[node name="BasicEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_15mmh")]
-position = Vector2(64, 56)
 player = NodePath("../Player")
-speed = 0.0
-
-[node name="GoonEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_xjatk")]
-position = Vector2(86, 52)
-player = NodePath("../Player")
-speed = 0.0
-
-[node name="ThugEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("8_b0oub")]
-position = Vector2(13, 53)
-player = NodePath("../Player")
-speed = 0.0
