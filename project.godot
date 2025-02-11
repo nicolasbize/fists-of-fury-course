@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EntityManager="*res://utils/entity_manager.gd"
 StageManager="*res://utils/stage_manager.gd"
+DamageManager="*res://utils/damage_manager.gd"
 
 [debug]
 

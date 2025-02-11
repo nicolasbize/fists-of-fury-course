@@ -678,6 +678,7 @@ size = Vector2(3, 3)
 collision_layer = 4
 collision_mask = 12
 script = ExtResource("2_p6rsp")
+duration_appear = 1000.0
 duration_between_melee_attacks = 2000
 duration_between_range_attacks = 4000
 duration_prep_melee_attack = 500

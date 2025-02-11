@@ -24,21 +24,24 @@ centered = false
 position = Vector2(114, 0)
 
 [node name="BasicEnemy3" parent="Checkpoints/Checkpoint/Enemies" index="0" instance=ExtResource("5_rtvgn")]
-position = Vector2(19, 28)
+position = Vector2(18, 29)
 
 [node name="BasicEnemy4" parent="Checkpoints/Checkpoint/Enemies" index="1" instance=ExtResource("5_rtvgn")]
-position = Vector2(40, 27)
+position = Vector2(39, 28)
 
-[node name="GoonEnemy" parent="Checkpoints/Checkpoint/Enemies" index="2" instance=ExtResource("4_6h47w")]
+[node name="BasicEnemy5" parent="Checkpoints/Checkpoint/Enemies" index="2" instance=ExtResource("5_rtvgn")]
+position = Vector2(27, 28)
+
+[node name="GoonEnemy" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("4_6h47w")]
 position = Vector2(59, -7)
 
-[node name="GoonEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("4_6h47w")]
+[node name="GoonEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="4" instance=ExtResource("4_6h47w")]
 position = Vector2(-12, 58)
 
-[node name="BasicEnemy" parent="Checkpoints/Checkpoint/Enemies" index="4" instance=ExtResource("5_rtvgn")]
+[node name="BasicEnemy" parent="Checkpoints/Checkpoint/Enemies" index="5" instance=ExtResource("5_rtvgn")]
 position = Vector2(115, 39)
 
-[node name="BasicEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="5" instance=ExtResource("5_rtvgn")]
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="6" instance=ExtResource("5_rtvgn")]
 position = Vector2(114, 56)
 
 [node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource("3_u0wo1")]
@@ -70,7 +73,7 @@ content_type = 1
 
 [node name="Door" parent="Doors" index="0" node_paths=PackedStringArray("enemies") instance=ExtResource("8_0lwaf")]
 position = Vector2(144, 32)
-enemies = [NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy3"), NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy4")]
+enemies = [NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy3"), NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy4"), NodePath("../../Checkpoints/Checkpoint/Enemies/BasicEnemy5")]
 
 [editable path="Checkpoints/Checkpoint"]
 [editable path="Checkpoints/Checkpoint2"]
