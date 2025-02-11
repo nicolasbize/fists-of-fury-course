@@ -48,7 +48,6 @@ script = ExtResource("3_1ub62")
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("2_fso2d")]
 position = Vector2(36, 46)
-has_knife = true
 
 [node name="Barrel" parent="ActorsContainer" instance=ExtResource("4_cs001")]
 position = Vector2(61, 47)
@@ -57,6 +56,7 @@ position = Vector2(61, 47)
 position = Vector2(67, 58)
 player = NodePath("../Player")
 duration_between_knife_respawn = 2000
+has_gun = true
 
 [node name="Knife" parent="ActorsContainer" instance=ExtResource("6_4co1t")]
 position = Vector2(21, 52)
@@ -64,3 +64,7 @@ position = Vector2(21, 52)
 [node name="GoonEnemy" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("7_xjatk")]
 position = Vector2(83, 51)
 player = NodePath("../Player")
+can_respawn_knives = false
+damage_gunshot = 0
+has_knife = false
+has_gun = true
