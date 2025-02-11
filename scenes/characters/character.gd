@@ -233,6 +233,7 @@ func shoot_gun() -> void:
 		target_point = projectile_aim.get_collision_point()
 		target.on_receive_damage(damage_gunshot, heading, DamageReceiver.HitType.KNOCKDOWN)
 		EntityManager.spawn_spark.emit(target.position)
+	SoundPlayer.play(SoundManager.Sound.GUNSHOT)
 	var weapon_root_position := Vector2(weapon_position.global_position.x, position.y)
 	var weapon_height := -weapon_position.position.y
 	var distance := target_point.x - weapon_position.global_position.x
@@ -244,11 +245,14 @@ func pickup_collectible() -> void:
 		var collectible : Collectible = collectible_areas[0]
 		if collectible.type == Collectible.Type.KNIFE and not has_knife:
 			has_knife = true
+			SoundPlayer.play(SoundManager.Sound.SWOOSH)
 		if collectible.type == Collectible.Type.GUN and not has_gun:
 			has_gun = true
 			ammo_left = max_ammo_per_gun
+			SoundPlayer.play(SoundManager.Sound.SWOOSH)
 		if collectible.type == Collectible.Type.FOOD:
 			set_health(max_health)
+			SoundPlayer.play(SoundManager.Sound.FOOD)
 		collectible.queue_free()
 		
 func is_collision_disabled() -> bool:
@@ -265,7 +269,7 @@ func on_throw_complete() -> void:
 		has_gun = false
 	else:
 		has_knife = false
-	
+	SoundPlayer.play(SoundManager.Sound.SWOOSH)
 	var collectible_global_position := Vector2(weapon_position.global_position.x, global_position.y)
 	var collectible_height := -weapon_position.position.y
 	EntityManager.spawn_collectible.emit(collectible_type, Collectible.State.FLY, collectible_global_position, heading, collectible_height, false)
@@ -273,6 +277,7 @@ func on_throw_complete() -> void:
 func on_takeoff_complete() -> void:
 	state = State.JUMP
 	height_speed = jump_intensity
+	SoundPlayer.play(SoundManager.Sound.SWOOSH)
 
 func on_pickup_complete() -> void:
 	state = State.IDLE
@@ -293,13 +298,16 @@ func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReceiver
 			has_gun = false
 			EntityManager.spawn_collectible.emit(Collectible.Type.GUN, Collectible.State.FALL, global_position, Vector2.ZERO, 0.0, autodestroy_on_drop)
 		set_health(current_health - amount)
+		SoundPlayer.play(SoundManager.Sound.HIT2, true)
 		if current_health == 0 or hit_type == DamageReceiver.HitType.KNOCKDOWN:
 			state = State.FALL
 			height_speed = knockdown_intensity
 			velocity = direction * knockback_intensity
+			DamageManager.heavy_blow_received.emit()
 		elif hit_type == DamageReceiver.HitType.POWER:
 			state = State.FLY
 			velocity = direction * flight_speed
+			DamageManager.heavy_blow_received.emit()
 		else:
 			state = State.HURT
 			velocity = direction * knockback_intensity

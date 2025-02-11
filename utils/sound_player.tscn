@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=3 uid="uid://dio13wfx4r4oh"]
+
+[ext_resource type="AudioStream" uid="uid://di0ffnbtb6y44" path="res://assets/sfx/click.wav" id="1_38rrq"]
+[ext_resource type="Script" path="res://utils/sound_manager.gd" id="1_xqa1m"]
+[ext_resource type="AudioStream" uid="uid://b3y6kwixk3bo0" path="res://assets/sfx/eat-food.wav" id="2_6td55"]
+[ext_resource type="AudioStream" uid="uid://bbfmx0sp66ode" path="res://assets/sfx/gogogo.wav" id="3_w0yc6"]
+[ext_resource type="AudioStream" uid="uid://ctfsk0327x8v2" path="res://assets/sfx/grunt.wav" id="4_2a2av"]
+[ext_resource type="AudioStream" uid="uid://2v2nyb6odfi3" path="res://assets/sfx/gunshot.wav" id="5_q73vi"]
+[ext_resource type="AudioStream" uid="uid://dtwkq828codsh" path="res://assets/sfx/hit-1.wav" id="6_h7p32"]
+[ext_resource type="AudioStream" uid="uid://b1551ahftg2m3" path="res://assets/sfx/hit-2.wav" id="7_by7ii"]
+[ext_resource type="AudioStream" uid="uid://ycxhry11m5c7" path="res://assets/sfx/knife-hit.wav" id="8_4ppt6"]
+[ext_resource type="AudioStream" uid="uid://3tlpuliqf5k2" path="res://assets/sfx/miss.wav" id="9_3h0lr"]
+
+[node name="SoundPlayer" type="Node"]
+script = ExtResource("1_xqa1m")
+
+[node name="SFXClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_38rrq")
+bus = &"SFX"
+
+[node name="SFXFood" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6td55")
+bus = &"SFX"
+
+[node name="SFXGogogo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_w0yc6")
+bus = &"SFX"
+
+[node name="SFXGrunt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2a2av")
+bus = &"SFX"
+
+[node name="SFXGunshot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_q73vi")
+bus = &"SFX"
+
+[node name="SFXHit1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_h7p32")
+bus = &"SFX"
+
+[node name="SFXHit2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_by7ii")
+bus = &"SFX"
+
+[node name="SFXKnife" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4ppt6")
+bus = &"SFX"
+
+[node name="SFXSwoosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3h0lr")
+bus = &"SFX"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch23ufr1x5ey4"]
+[gd_scene load_steps=9 format=3 uid="uid://ch23ufr1x5ey4"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_d3qyf"]
 [ext_resource type="Texture2D" uid="uid://c8675s2tt1wxe" path="res://assets/art/ui/avatars/avatar-punk.png" id="1_gbxrk"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bxlh1wahgqqe7" path="res://scenes/ui/healthbar.tscn" id="3_afvqa"]
 [ext_resource type="PackedScene" uid="uid://c0xjjoqb6n8wi" path="res://scenes/ui/combo_indicator.tscn" id="5_v1jss"]
 [ext_resource type="PackedScene" uid="uid://dlkev2s84x4xv" path="res://scenes/ui/score_indicator.tscn" id="6_hdap0"]
+[ext_resource type="PackedScene" uid="uid://dv7as7fmjbxt8" path="res://scenes/ui/flickering_texture_rect.tscn" id="7_w57sk"]
+[ext_resource type="Texture2D" uid="uid://bflpnyksqncyx" path="res://assets/art/ui/go-go-go.png" id="8_ac4e1"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_d3qyf")
@@ -84,5 +86,18 @@ offset_left = 12.0
 offset_top = 1.0
 offset_right = 47.0
 offset_bottom = 7.0
+
+[node name="GoIndicator" parent="UIContainer" instance=ExtResource("7_w57sk")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_top = 11.0
+offset_right = 0.0
+offset_bottom = 27.0
+grow_horizontal = 0
+texture = ExtResource("8_ac4e1")
+stretch_mode = 2
 
 [editable path="UIContainer/EnemyHealthbar"]

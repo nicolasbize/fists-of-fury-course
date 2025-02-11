@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c6vlvtiyf7nyh" path="res://scenes/props/door.tscn" id="8_0lwaf"]
 
 [node name="Stage-01-Streets" instance=ExtResource("1_kx8tn")]
+music = 2
 
 [node name="MainBackgorund" parent="Backgrounds" index="0"]
 texture = ExtResource("2_quh86")

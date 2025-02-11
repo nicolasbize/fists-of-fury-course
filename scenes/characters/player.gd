@@ -37,6 +37,7 @@ func handle_input() -> void:
 				state = State.PICKUP
 			else:
 				state = State.ATTACK
+				SoundPlayer.play(SoundManager.Sound.SWOOSH)
 				if is_last_hit_successful:
 					time_since_last_successful_attack = Time.get_ticks_msec()
 					attack_combo_index = (attack_combo_index + 1) % anim_attacks.size()
@@ -48,6 +49,7 @@ func handle_input() -> void:
 		attack_combo_index = 0
 	if can_jumpkick() and Input.is_action_just_pressed("attack"):
 		state = State.JUMPKICK
+		SoundPlayer.play(SoundManager.Sound.SWOOSH)
 
 func set_heading() -> void:
 	if can_move():

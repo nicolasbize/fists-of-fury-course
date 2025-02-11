@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var combo_indicator : ComboIndicator = $UIContainer/ComboIndicator
 @onready var enemy_avatar : TextureRect = $UIContainer/EnemyAvatar
 @onready var enemy_healthbar : Healthbar = $UIContainer/EnemyHealthbar
+@onready var go_indicator : FlickeringTextureRect = $UIContainer/GoIndicator
 @onready var player_healthbar : Healthbar = $UIContainer/PlayerHealthbar
 @onready var score_indicator : ScoreIndicator = $UIContainer/ScoreIndicator
 
@@ -20,6 +21,7 @@ const avatar_map : Dictionary = {
 
 func _init() -> void:
 	DamageManager.health_change.connect(on_character_health_change.bind())
+	StageManager.checkpoint_complete.connect(on_checkpoint_complete.bind())
 
 func _ready() -> void:
 	enemy_avatar.visible = false
@@ -44,3 +46,5 @@ func on_character_health_change(type: Character.Type, current_health: int, max_h
 		enemy_avatar.visible = true
 		enemy_healthbar.visible = true
 		
+func on_checkpoint_complete() -> void:
+	go_indicator.start_flickering()
