@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://uqrqng3qanfq"]
+[gd_scene load_steps=6 format=3 uid="uid://uqrqng3qanfq"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_58n65"]
-[ext_resource type="PackedScene" uid="uid://df3rikr3va82q" path="res://scenes/stage/stage.tscn" id="1_ea3cy"]
 [ext_resource type="PackedScene" uid="uid://cvr6opvp31hp6" path="res://scenes/characters/player.tscn" id="2_fso2d"]
 [ext_resource type="Script" path="res://scenes/stage/actors_container.gd" id="3_1ub62"]
-[ext_resource type="PackedScene" uid="uid://dv0080mtbogqj" path="res://scenes/characters/igor_boss.tscn" id="5_vyiad"]
+[ext_resource type="PackedScene" uid="uid://dwkq72aytt2bu" path="res://scenes/stage/stage_01_streets.tscn" id="5_xnh8a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktcqf"]
 size = Vector2(6, 64)
@@ -12,7 +11,7 @@ size = Vector2(6, 64)
 [node name="World" type="Node2D"]
 script = ExtResource("1_58n65")
 
-[node name="Stage" parent="." instance=ExtResource("1_ea3cy")]
+[node name="Stage-01-Streets" parent="." instance=ExtResource("5_xnh8a")]
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(50, 32)
@@ -39,13 +38,10 @@ sync_to_physics = false
 position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_ktcqf")
 
-[node name="ActorsContainer" type="Node2D" parent="."]
+[node name="ActorsContainer" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 y_sort_enabled = true
 script = ExtResource("3_1ub62")
+player = NodePath("Player")
 
 [node name="Player" parent="ActorsContainer" instance=ExtResource("2_fso2d")]
 position = Vector2(36, 46)
-
-[node name="IgorBoss" parent="ActorsContainer" node_paths=PackedStringArray("player") instance=ExtResource("5_vyiad")]
-position = Vector2(74, 47)
-player = NodePath("../Player")

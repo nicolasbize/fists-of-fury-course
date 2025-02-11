@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwkq72aytt2bu"]
+
+[ext_resource type="PackedScene" uid="uid://df3rikr3va82q" path="res://scenes/stage/stage.tscn" id="1_kx8tn"]
+[ext_resource type="Texture2D" uid="uid://b2ijhmj67ylrh" path="res://assets/art/backgrounds/street-background.png" id="2_quh86"]
+[ext_resource type="PackedScene" uid="uid://bkc2erd4706qe" path="res://scenes/stage/checkpoint.tscn" id="3_u0wo1"]
+[ext_resource type="PackedScene" uid="uid://cnwqi0bw23cl3" path="res://scenes/characters/goon_enemy.tscn" id="4_6h47w"]
+[ext_resource type="PackedScene" uid="uid://ba7x8fhqs3fta" path="res://scenes/characters/basic_enemy.tscn" id="5_rtvgn"]
+[ext_resource type="PackedScene" uid="uid://77l4jx081mf4" path="res://scenes/characters/thug_enemy.tscn" id="6_lymvc"]
+
+[node name="Stage-01-Streets" instance=ExtResource("1_kx8tn")]
+
+[node name="MainBackgorund" parent="Backgrounds" index="0"]
+texture = ExtResource("2_quh86")
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("3_u0wo1")]
+position = Vector2(114, 0)
+
+[node name="GoonEnemy" parent="Checkpoints/Checkpoint/Enemies" index="0" instance=ExtResource("4_6h47w")]
+position = Vector2(-16, 44)
+
+[node name="GoonEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="1" instance=ExtResource("4_6h47w")]
+position = Vector2(-12, 58)
+
+[node name="BasicEnemy" parent="Checkpoints/Checkpoint/Enemies" index="2" instance=ExtResource("5_rtvgn")]
+position = Vector2(115, 39)
+
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint/Enemies" index="3" instance=ExtResource("5_rtvgn")]
+position = Vector2(114, 56)
+
+[node name="Checkpoint2" parent="Checkpoints" index="1" instance=ExtResource("3_u0wo1")]
+position = Vector2(217, 0)
+nb_simultaneous_enemies = 3
+
+[node name="ThugEnemy" parent="Checkpoints/Checkpoint2/Enemies" index="0" instance=ExtResource("6_lymvc")]
+position = Vector2(-16, 42)
+
+[node name="ThugEnemy2" parent="Checkpoints/Checkpoint2/Enemies" index="1" instance=ExtResource("6_lymvc")]
+position = Vector2(112, 40)
+
+[node name="BasicEnemy" parent="Checkpoints/Checkpoint2/Enemies" index="2" instance=ExtResource("5_rtvgn")]
+position = Vector2(18, 96)
+
+[node name="BasicEnemy2" parent="Checkpoints/Checkpoint2/Enemies" index="3" instance=ExtResource("5_rtvgn")]
+position = Vector2(52, 95)
+
+[node name="BasicEnemy3" parent="Checkpoints/Checkpoint2/Enemies" index="4" instance=ExtResource("5_rtvgn")]
+position = Vector2(88, 95)
+
+[editable path="Checkpoints/Checkpoint"]
+[editable path="Checkpoints/Checkpoint2"]

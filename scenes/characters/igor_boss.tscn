@@ -191,6 +191,7 @@ duration_between_attacks = 2000
 duration_vulnerable = 2000
 damage = 5
 max_health = 50
+type = 4
 duration_grounded = 2000.0
 flight_speed = 90.0
 knockback_intensity = 10.0

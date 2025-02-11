@@ -6,6 +6,7 @@ const GRAVITY := 600.0
 @export var can_respawn : bool
 @export var damage : int
 @export var max_health : int
+@export var type : Type
 
 @export_group("Movement")
 @export var duration_grounded: float
@@ -38,6 +39,7 @@ const GRAVITY := 600.0
 @onready var weapon_position : Node2D = $KnifeSprite/WeaponPosition
 
 enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND, JUMPKICK, HURT, FALL, GROUNDED, DEATH, FLY, PREP_ATTACK, THROW, PICKUP, SHOOT, PREP_SHOOT, RECOVER}
+enum Type {PLAYER, PUNK, GOON, THUG, BOUNCER}
 
 var ammo_left := 0
 var anim_attacks := []
