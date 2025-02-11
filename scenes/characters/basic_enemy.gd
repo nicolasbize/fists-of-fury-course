@@ -9,6 +9,7 @@ const EDGE_SCREEN_BUFFER := 10
 @export var duration_prep_range_attack : int
 @export var player : Player
 
+var assigned_door_index := -1
 var player_slot : EnemySlot = null
 var time_since_last_melee_attack := Time.get_ticks_msec()
 var time_since_prep_melee_attack := Time.get_ticks_msec()
@@ -52,6 +53,12 @@ func goto_range_position() -> void:
 	if can_range_attack() and has_gun and projectile_aim.is_colliding():
 		state = State.PREP_SHOOT
 		time_since_prep_range_attack = Time.get_ticks_msec()
+
+func assign_door(door: Door) -> void:
+	if door.state != Door.State.OPENED:
+		state = State.WAIT
+		door.open()
+		door.opened.connect(on_action_complete.bind())
 
 func handle_prep_shoot() -> void:
 	if state == State.PREP_SHOOT and (Time.get_ticks_msec() - time_since_prep_range_attack > duration_prep_range_attack):

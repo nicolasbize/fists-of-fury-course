@@ -13,15 +13,17 @@ var is_activated := false
 func _ready() -> void:
 	player_detection_area.body_entered.connect(on_player_enter.bind())
 	EntityManager.death_enemy.connect(on_enemy_death.bind())
-	for enemy : Character in enemies.get_children():
-		enemy_data.append(EnemyData.new(enemy.type, enemy.global_position))
-		enemy.queue_free()
 
 func _process(_delta: float) -> void:
 	if is_activated and can_spawn_enemies():
 		var enemy : EnemyData = enemy_data.pop_front()
 		EntityManager.spawn_enemy.emit(enemy)
 		active_enemy_counter += 1
+
+func create_enemy_data() -> void:
+	for enemy : Character in enemies.get_children():
+		enemy_data.append(EnemyData.new(enemy.type, enemy.global_position, enemy.assigned_door_index))
+		enemy.queue_free()
 
 func can_spawn_enemies() -> bool:
 	return enemy_data.size() > 0 and active_enemy_counter < nb_simultaneous_enemies

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6vlvtiyf7nyh"]
+
+[ext_resource type="Script" path="res://scenes/props/door.gd" id="1_421fs"]
+[ext_resource type="Texture2D" uid="uid://ch0giondkg28a" path="res://assets/art/props/garage-door-closed.png" id="1_jpamn"]
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_421fs")
+duration_open = 1000.0
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_jpamn")
+centered = false
+offset = Vector2(-24, -32)

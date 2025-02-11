@@ -16,7 +16,10 @@ const ENEMY_MAP := {
 
 @export var player : Player
 
-func _ready() -> void:
+var doors : Array[Door]
+
+func _init() -> void:
+	EntityManager.orphan_actor.connect(on_orphan_actor.bind())
 	EntityManager.spawn_collectible.connect(on_spawn_collectible.bind())
 	EntityManager.spawn_shot.connect(on_spawn_shot.bind())
 	EntityManager.spawn_enemy.connect(on_spawn_enemy.bind())
@@ -40,4 +43,13 @@ func on_spawn_enemy(enemy_data: EnemyData) -> void:
 	var enemy : Character = ENEMY_MAP[enemy_data.type].instantiate()
 	enemy.global_position = enemy_data.global_position
 	enemy.player = player
+	enemy.height = enemy_data.height
+	enemy.state = enemy_data.state
+	if enemy_data.door_index > -1:
+		enemy.assign_door(doors[enemy_data.door_index])
 	add_child(enemy)
+
+func on_orphan_actor(orphan: Node2D) -> void:
+	if orphan is Door:
+		doors.append(orphan)
+	orphan.reparent(self)
