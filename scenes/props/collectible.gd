@@ -7,7 +7,8 @@ const GRAVITY := 600.0
 @onready var collectible_sprite : Sprite2D = $CollectibleSprite
 @onready var damage_emitter : Area2D = $DamageEmitter
 
-@export var damage: int
+@export var autodestroy : bool
+@export var damage : int
 @export var knockdown_intensity : float
 @export var speed : float
 @export var type : Type
@@ -33,7 +34,6 @@ func _ready() -> void:
 	damage_emitter.area_entered.connect(on_emit_damage.bind())
 	damage_emitter.body_exited.connect(on_exit_screen.bind())
 	damage_emitter.position = Vector2.UP * height
-	damage_emitter.monitoring = state == State.FLY
 
 func _process(delta: float) -> void:
 	handle_fall(delta)
@@ -41,6 +41,8 @@ func _process(delta: float) -> void:
 	collectible_sprite.flip_h = velocity.x < 0
 	collectible_sprite.position = Vector2.UP * height
 	position += velocity * delta
+	monitorable = state == State.GROUNDED
+	damage_emitter.monitoring = state == State.FLY
 
 func handle_animations() -> void:
 	animation_player.play(anim_map[state])
@@ -48,9 +50,13 @@ func handle_animations() -> void:
 func handle_fall(delta) -> void:
 	if state == State.FALL:
 		height += height_speed * delta
+		if autodestroy:
+			modulate.a -= delta
 		if height < 0:
 			height = 0
 			state = State.GROUNDED
+			if autodestroy:
+				queue_free()
 		else:
 			height_speed -= GRAVITY * delta
 		

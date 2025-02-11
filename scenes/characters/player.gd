@@ -1,11 +1,23 @@
 class_name Player
 extends Character
 
+@export var max_duration_between_successful_hits : int
+
 @onready var enemy_slots : Array = $EnemySlots.get_children()
+
+var time_since_last_successful_attack := Time.get_ticks_msec()
 
 func _ready() -> void:
 	super._ready()
 	anim_attacks = ["punch", "punch_alt", "kick", "roundkick"]
+	
+func _process(delta: float) -> void:
+	super._process(delta)
+	process_time_between_combos()
+
+func process_time_between_combos() -> void:
+	if Time.get_ticks_msec() - time_since_last_successful_attack > max_duration_between_successful_hits:
+		attack_combo_index = 0
 
 func handle_input() -> void:
 	if can_move():
@@ -15,19 +27,25 @@ func handle_input() -> void:
 		if has_knife:
 			state = State.THROW
 		elif has_gun:
-			shoot_gun()
+			if ammo_left > 0:
+				shoot_gun()
+				ammo_left -= 1
+			else:
+				state = State.THROW
 		else:
 			if can_pickup_collectible():
 				state = State.PICKUP
 			else:
 				state = State.ATTACK
 				if is_last_hit_successful:
+					time_since_last_successful_attack = Time.get_ticks_msec()
 					attack_combo_index = (attack_combo_index + 1) % anim_attacks.size()
 					is_last_hit_successful = false
 				else:
 					attack_combo_index = 0
 	if can_jump() and Input.is_action_just_pressed("jump"):
 		state = State.TAKEOFF
+		attack_combo_index = 0
 	if can_jumpkick() and Input.is_action_just_pressed("attack"):
 		state = State.JUMPKICK
 
