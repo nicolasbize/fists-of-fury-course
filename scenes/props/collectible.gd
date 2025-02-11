@@ -62,6 +62,7 @@ func handle_fall(delta) -> void:
 		
 func on_emit_damage(receiver: DamageReceiver) -> void:
 	receiver.damage_received.emit(damage, direction, DamageReceiver.HitType.KNOCKDOWN)
+	EntityManager.spawn_spark.emit(position)
 	queue_free()
 
 func on_exit_screen(_wall: AnimatableBody2D) -> void:

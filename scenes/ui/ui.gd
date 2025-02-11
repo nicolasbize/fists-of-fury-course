@@ -1,9 +1,11 @@
 class_name UI
 extends CanvasLayer
 
+@onready var combo_indicator : ComboIndicator = $UIContainer/ComboIndicator
 @onready var enemy_avatar : TextureRect = $UIContainer/EnemyAvatar
 @onready var enemy_healthbar : Healthbar = $UIContainer/EnemyHealthbar
 @onready var player_healthbar : Healthbar = $UIContainer/PlayerHealthbar
+@onready var score_indicator : ScoreIndicator = $UIContainer/ScoreIndicator
 
 @export var duration_healthbar_visible : int
 
@@ -22,12 +24,15 @@ func _init() -> void:
 func _ready() -> void:
 	enemy_avatar.visible = false
 	enemy_healthbar.visible = false
+	combo_indicator.combo_reset.connect(on_combo_reset.bind())
 
 func _process(_delta: float) -> void:
 	if enemy_healthbar.visible and (Time.get_ticks_msec() - time_start_healthbar_visible > duration_healthbar_visible):
 		enemy_avatar.visible = false
 		enemy_healthbar.visible = false
 
+func on_combo_reset(points: int) -> void:
+	score_indicator.add_combo(points)
 
 func on_character_health_change(type: Character.Type, current_health: int, max_health: int) -> void:
 	if type == Character.Type.PLAYER:

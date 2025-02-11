@@ -129,6 +129,9 @@ func set_heading() -> void:
 
 func on_receive_damage(amount: int, direction: Vector2, hit_type: DamageReceiver.HitType) -> void:
 	super.on_receive_damage(amount, direction, hit_type)
+	ComboManager.register_hit.emit()
+	if current_health == 0 or hit_type == DamageReceiver.HitType.POWER:
+		EntityManager.spawn_spark.emit(position)
 	if current_health == 0:
 		player.free_slot(self)
 		EntityManager.death_enemy.emit(self)

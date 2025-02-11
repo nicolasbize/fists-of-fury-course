@@ -77,8 +77,10 @@ func on_receive_damage(amount: int, direction: Vector2, _hit_type: DamageReceive
 	if not is_vulnerable():
 		knockback_force = direction * knockback_intensity
 		return
+	ComboManager.register_hit.emit()
 	current_health = clamp(current_health - amount, 0, max_health)
 	if current_health == 0:
+		EntityManager.spawn_spark.emit(position)
 		state = State.FALL
 		height_speed = knockdown_intensity
 		velocity = direction * knockdown_intensity

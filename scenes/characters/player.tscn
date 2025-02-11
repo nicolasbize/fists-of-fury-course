@@ -959,16 +959,16 @@ shape = SubResource("RectangleShape2D_5xonq")
 [node name="EnemySlots" type="Node2D" parent="." index="6"]
 
 [node name="EnemySlot" parent="EnemySlots" index="0" instance=ExtResource("4_cma4q")]
-position = Vector2(13, 2)
+position = Vector2(13, 3)
 
 [node name="EnemySlot2" parent="EnemySlots" index="1" instance=ExtResource("4_cma4q")]
-position = Vector2(13, -3)
+position = Vector2(13, -2)
 
 [node name="EnemySlot3" parent="EnemySlots" index="2" instance=ExtResource("4_cma4q")]
-position = Vector2(-13, 2)
+position = Vector2(-13, 3)
 
 [node name="EnemySlot4" parent="EnemySlots" index="3" instance=ExtResource("4_cma4q")]
-position = Vector2(-13, -3)
+position = Vector2(-13, -2)
 
 [node name="KnifeSprite" parent="." index="8"]
 texture = ExtResource("5_e7erk")
